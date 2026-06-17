@@ -1,0 +1,9 @@
+package com.example.demo._01_ticket;
+
+public class Ticket {
+    private Long fee;
+
+    public Long getFee() {
+        return fee;
+    }
+}
