@@ -1,10 +1,16 @@
 package com.example.demo._01_ticket;
 
+import lombok.Getter;
+
 public class Audience {
     private Bag bag;
 
     public Audience(Bag bag) {
         this.bag = bag;
+    }
+
+    public Long getBagAmount(){
+        return bag.getAmount();
     }
 
     /*

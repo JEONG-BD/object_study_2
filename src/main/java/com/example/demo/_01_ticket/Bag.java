@@ -1,7 +1,13 @@
 package com.example.demo._01_ticket;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@ToString
 public class Bag {
+    @Getter
     private Long amount;
+
     private Invitation invitation;
     private Ticket ticket;
 
@@ -38,6 +44,9 @@ public class Bag {
     }
 
     private void minusAmount(Long amount){
+        if(this.amount < amount){
+            throw new IllegalArgumentException("잔액 부족");
+        }
         this.amount -= amount;
     }
 
