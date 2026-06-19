@@ -20,7 +20,7 @@ class AudienceTest {
 
     @Test
     @DisplayName("관람객을 생성한다")
-    public void when_create_audience_then_not_null(){
+    public void givenBag_whenCreateAudience_thenNotNull(){
         //given
         Bag bag = new Bag(null, 100L);
         //when
@@ -32,12 +32,12 @@ class AudienceTest {
 
     @Test
     @DisplayName("초대장을 소유한 관람객은 티켓을 무료 수령한다.")
-    public void when_buy_ticket_then_not_null(){
+    public void givenInvitation_whenBuyTicket_thenReturnZeroFee(){
         //given
         Bag bag = new Bag(new Invitation(), 100L);
         Audience audience = new Audience(bag);
         //when
-        Long resultFee = bag.hold(ticket);
+        Long resultFee = audience.buy(ticket);
         //then
         Assertions.assertThat(resultFee).isEqualTo(0L);
     }
@@ -45,19 +45,19 @@ class AudienceTest {
 
     @Test
     @DisplayName("초대장을 소유하지 않은 관람객은 티켓값을 구매한다")
-    public void when_buy_ticket_then_not_fee(){
+    public void whenAudienceHasNoInvitation_thenPayTicketFee(){
         //given
         Bag bag = new Bag(null, 100L);
-        //when
         Audience audience = new Audience(bag);
+        //when
+        Long resultFee = audience.buy(ticket);
         //then
-        Long resultFee = bag.hold(ticket);
         Assertions.assertThat(resultFee).isEqualTo(1L);
     }
 
     @Test
     @DisplayName("초대장도 소유하지 않고, 잔액이 부족하면 오류를 발생시킨다")
-    public void when_buy_ticket_then_throw_error(){
+    public void whenAudienceHasNoInvitationAndInsufficientBalance_thenThrowException(){
         //given
         Bag bag = new Bag(null, 0L);
         Audience audience = new Audience(bag);
