@@ -1,6 +1,9 @@
 package com.example.demo._02_movie;
 
+import lombok.Getter;
+
 import java.time.Duration;
+
 
 public class Movie {
 
